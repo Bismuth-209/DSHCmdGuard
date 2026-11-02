@@ -107,7 +107,7 @@ tools/pre-execute
 ### 单元 / 集成测试
 
 ```sh
-node --test tests
+node --test "tests/*.test.mjs"
 ```
 
 测试设计为安全：不会执行真实删除命令；policy 测试只调用分类器，plugin 测试使用假 `next()`，trash 测试只在临时目录操作。没有对应环境的 live/Windows 测试会自动 skip。
