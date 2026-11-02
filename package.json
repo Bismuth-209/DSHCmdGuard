@@ -1,0 +1,58 @@
+{
+  "name": "dsh-cmd-guard",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Command safety guard for DeepSeek Harness: blocks destructive shell commands before execution, offers recoverable trash tools, and can consult an LLM reviewer for ambiguous cases.",
+  "icon": "./icon.svg",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./icon": "./icon.svg",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/**/*.js",
+    "icon.svg",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=24",
+    "dsh": ">=0.2.1-rc.3"
+  },
+  "dsh": {
+    "manifestVersion": 1,
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "scripts": {
+    "test": "node --test tests"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.0.5"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "deepseek",
+    "cordis",
+    "safety",
+    "delete-guard",
+    "command-guard",
+    "trash",
+    "security"
+  ],
+  "author": "Bismuth-209",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bismuth-209/DSHCmdGuard.git"
+  },
+  "homepage": "https://github.com/Bismuth-209/DSHCmdGuard#readme",
+  "bugs": {
+    "url": "https://github.com/Bismuth-209/DSHCmdGuard/issues"
+  }
+}

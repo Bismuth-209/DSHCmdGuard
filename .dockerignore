@@ -1,0 +1,6 @@
+.git
+.github
+.test-workspaces
+node_modules
+test_key.txt
+*.log

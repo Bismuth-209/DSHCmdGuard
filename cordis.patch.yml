@@ -1,0 +1,54 @@
+- insert:
+    - id: cmd-review-investigator-preset
+      name: '@deepseek-ai/dsh-agent-preset'
+      config:
+        id: cmd-review-investigator
+        name: Cmd Review Investigator
+        description: Read-only investigator for command-safety review.
+        order: 95
+        plugins:
+          - id: persona
+            name: '@deepseek-ai/dsh-persona'
+            config:
+              prefix: >-
+                You are a read-only safety investigator. Inspect only the
+                files needed to answer the review question. Never modify,
+                create, move, or delete files. Return a concise JSON verdict.
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+            config:
+              read: true
+              readImage: false
+              write: false
+              edit: false
+          - id: tool-fs-search
+            name: '@deepseek-ai/dsh-tool-fs-search'
+            config:
+              sampleOverCapGlobResults: false
+
+    - id: cmd-guard
+      name: 'dsh-cmd-guard'
+      config:
+        enabled: true
+        strictDelete: true
+        commandTools:
+          - bash
+          - pwsh
+          - terminal_send
+        trash:
+          enabled: true
+          maxPaths: 20
+          extraAllowedRoots: []
+        reviewer:
+          enabled: true
+          timeoutMs: 20000
+          maxHistoryItems: 12
+        investigator:
+          enabled: false
+          provider: spawn
+          agentPreset: cmd-review-investigator
+          timeoutMs: 15000
+          maxFiles: 5
+        audit:
+          enabled: true
+
